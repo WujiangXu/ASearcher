@@ -14,6 +14,71 @@ This directory contains tools for preprocessing datasets with SONAR concept embe
 - ✅ Deterministic and reproducible
 - ✅ Easy to debug and validate
 
+## 🧪 Testing (Recommended First Step)
+
+Before preprocessing real data, verify your setup works correctly:
+
+### Quick Smoke Test (30 seconds)
+
+```bash
+cd preprocessing/
+
+# Test on CPU (no GPU needed)
+bash quick_test.sh cpu
+
+# Or test on GPU
+bash quick_test.sh cuda:0
+```
+
+**Expected output**:
+```
+✓ Python found
+✓ SONAR installed
+✓ NLTK installed
+✓ NumPy installed
+✓ SONAR encoder loaded successfully
+✓ Encoding successful, shape: (2, 1024)
+✓ ALL CHECKS PASSED!
+```
+
+### Full Integration Test (2-3 minutes)
+
+```bash
+# Test complete workflow with sample data
+python test_preprocessing.py --device cpu
+
+# Or on GPU
+python test_preprocessing.py --device cuda:0
+
+# Keep test data for inspection
+python test_preprocessing.py --device cpu --keep
+```
+
+**What it tests**:
+1. ✅ Creates sample test data (3 questions)
+2. ✅ Runs preprocessing with SONAR
+3. ✅ Validates embedding quality
+4. ✅ Tests loading processed data
+5. ✅ Tests concept operations (coherence, similarity, selection)
+6. ✅ Cleans up test files
+
+**Expected output**:
+```
+============================================================
+TEST SUMMARY
+============================================================
+Preprocessing                 ✓ PASS
+Validation                    ✓ PASS
+Data Loading                  ✓ PASS
+Concept Operations            ✓ PASS
+============================================================
+✓ ALL TESTS PASSED!
+```
+
+If all tests pass, you're ready to process real datasets!
+
+---
+
 ## 🚀 Quick Start
 
 ### 1. Install Dependencies
