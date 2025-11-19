@@ -1,0 +1,66 @@
+name: asearcher
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python
+  - python=3.10
+
+  # PyTorch (CUDA 12.1)
+  - pytorch>=2.1.0
+  - pytorch-cuda=12.1
+  - torchvision
+  - torchaudio
+
+  # Core dependencies
+  - pip
+  - numpy>=1.24.0
+  - scipy
+
+  # pip dependencies
+  - pip:
+      # === Core RL Framework ===
+      - areal  # ASearcher's asynchronous RL framework
+
+      # === Transformers & NLP ===
+      - transformers>=4.35.0
+      - tokenizers>=0.15.0
+      - datasets>=2.14.0
+      - accelerate>=0.24.0
+      - sentencepiece
+      - protobuf
+
+      # === Tensor & Data Processing ===
+      - tensordict>=0.2.0
+      - torchdata>=0.7.0
+
+      # === Vector Search ===
+      - faiss-cpu>=1.7.4  # Use faiss-gpu if you have GPU support
+
+      # === API & Web ===
+      - fastapi>=0.104.0
+      - uvicorn[standard]>=0.24.0
+      - pydantic>=2.0.0
+      - aiohttp>=3.9.0
+      - requests>=2.31.0
+
+      # === SONAR (for concept encoding) ===
+      - sonar-space  # Meta's SONAR for multilingual embeddings
+      - nltk>=3.8.0  # For sentence tokenization
+
+      # === OpenAI API (for QA synthesis) ===
+      - openai>=1.0.0
+
+      # === Evaluation ===
+      - evaluate>=0.4.0
+
+      # === Utilities ===
+      - tqdm>=4.66.0
+      - pyyaml>=6.0
+      - python-dotenv
+
+      # === Optional: SGLang (for local LLM serving) ===
+      # - sglang>=0.1.0  # Uncomment if you want to use local models
